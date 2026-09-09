@@ -8,7 +8,7 @@ export const site = {
   location: "Dindigul, Tamil Nadu, India",
   email: "arunselvand07@gmail.com",
   phone: "+91 9150256090",
-  resumePath: "/Arun Selvan D - Full Stack Developer.pdf",
+  resumePath: "public/Arun Selvan D - Full Stack Developer.pdf",
   whatsappNumber: "919150256090", 
   social: {
     github: "https://github.com/Hackerin63",
