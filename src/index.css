@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------
+   Design tokens
+   Concept: an instrument panel / systems console for an
+   engineer who moves between full-stack web work and
+   AI/ML signal & vision systems. Warm brass "signal" accent
+   against a charcoal-blue console surface; a cool slate-blue
+   secondary accent for data/AI motifs. Hairline borders and
+   corner brackets stand in for shadow-card chrome.
+--------------------------------------------------------- */
+
+:root {
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Dark (default) */
+  --bg: #0a0e12;
+  --bg-raised: #0f151b;
+  --surface: #121920;
+  --surface-2: #171f27;
+  --border: #232c35;
+  --border-strong: #313d49;
+  --text: #e9edf1;
+  --text-soft: #aab4bd;
+  --text-faint: #6b7684;
+  --accent: #e3b341;
+  --accent-soft: #e3b34122;
+  --accent-ink: #14100a;
+  --signal: #6f9bb8;
+  --signal-soft: #6f9bb822;
+  --success: #6fbf8b;
+  --danger: #d4715f;
+  --grid-line: #ffffff08;
+  --scrollbar: #232c35;
+}
+
+.light {
+  --bg: #f6f4ef;
+  --bg-raised: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f0ede5;
+  --border: #ded9cd;
+  --border-strong: #c7c1b2;
+  --text: #191712;
+  --text-soft: #5b564c;
+  --text-faint: #8a8577;
+  --accent: #a3721c;
+  --accent-soft: #a3721c1a;
+  --accent-ink: #fff8ea;
+  --signal: #345b78;
+  --signal-soft: #345b7818;
+  --success: #2f7a52;
+  --danger: #b5432f;
+  --grid-line: #00000009;
+  --scrollbar: #ded9cd;
+}
+
+@theme inline {
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-soft: var(--text-soft);
+  --color-text-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+html.light {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 999px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reusable primitives */
+.font-mono-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.panel-corners::before,
+.panel-corners::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--accent);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.panel-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.panel-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.bg-dot-grid {
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
