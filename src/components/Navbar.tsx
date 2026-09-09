@@ -36,17 +36,7 @@ export function Navbar() {
 
   const handleNavClick = (id: string) => {
     setMobileOpen(false);
-    // The mobile menu locks body scroll (overflow: hidden) while open. That
-    // lock is normally released by the effect above, but this click handler
-    // fires in the same tick as the state update, before React re-renders —
-    // so the body is still locked at the instant scrollIntoView() runs,
-    // which makes the browser silently ignore the scroll on mobile. Release
-    // the lock immediately and defer the scroll one frame so the menu-close
-    // repaint finishes first.
-    document.body.style.overflow = "";
-    requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -95,7 +85,7 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
-            
+            <a
               href={site.resumePath}
               download
               className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5 text-sm font-medium text-[var(--accent-ink)] transition-transform hover:scale-[1.03] active:scale-[0.98]"
@@ -140,7 +130,7 @@ export function Navbar() {
                   {item.label}
                 </button>
               ))}
-              
+              <a
                 href={site.resumePath}
                 download
                 className="mt-2 flex items-center justify-center gap-1.5 rounded-xl bg-accent px-4 py-3 text-sm font-medium text-[var(--accent-ink)]"
@@ -154,5 +144,4 @@ export function Navbar() {
       </AnimatePresence>
     </header>
   );
-  
 }
