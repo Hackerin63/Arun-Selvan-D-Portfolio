@@ -39,8 +39,8 @@ export const research: ResearchEntry[] = [
     status: "ICRET - 2026 Conference Paper (Accepted and Presented for publication) ",
   },
   {
-    id: "Physiological-Sensor-Based-Disease-Detection-Research - Co-Author",
-    title: "Physiological Sensor-Based Disease Detection using Advanced Temporal Transformer and Graph Neural Network Models",
+    id: "Physiological-Sensor-Based-Disease-Detection-Research",
+    title: "Physiological Sensor-Based Disease Detection using Advanced Temporal Transformer and Graph Neural Network Models - Co-Author",
     area: "Artificial Intelligence & Machine Learning – Healthcare, Physiological Signal Processing, and Disease Detection.",
     abstract:
       "Developed a TT-GNN-based healthcare monitoring system that analyzes multi-sensor physiological data for early cardiovascular and cerebrovascular risk detection.",
