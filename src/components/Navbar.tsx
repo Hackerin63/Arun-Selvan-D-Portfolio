@@ -36,7 +36,10 @@ export function Navbar() {
 
   const handleNavClick = (id: string) => {
     setMobileOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.body.style.overflow = "";
+    requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    });
   };
 
   return (
