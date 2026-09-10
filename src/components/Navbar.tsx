@@ -18,6 +18,7 @@ const NAV_ITEMS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [pendingNavId, setPendingNavId] = useState<string | null>(null);
   const active = useActiveSection(NAV_ITEMS.map((i) => i.id));
 
   useEffect(() => {
@@ -34,12 +35,28 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    if (!pendingNavId || mobileOpen) return;
+
+    let frame = 0;
+    const scrollWhenReady = () => {
+      const target = document.getElementById(pendingNavId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+        setPendingNavId(null);
+        return;
+      }
+
+      frame = window.requestAnimationFrame(scrollWhenReady);
+    };
+
+    frame = window.requestAnimationFrame(scrollWhenReady);
+    return () => window.cancelAnimationFrame(frame);
+  }, [mobileOpen, pendingNavId]);
+
   const handleNavClick = (id: string) => {
     setMobileOpen(false);
-    document.body.style.overflow = "";
-    requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    });
+    setPendingNavId(id);
   };
 
   return (
@@ -66,20 +83,24 @@ export function Navbar() {
 
           <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
             {NAV_ITEMS.map((item) => (
-                
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={() => {
-                    setMobileOpen(false);
-                    document.body.style.overflow = "";
-                  }}
-                  className={`block w-full rounded-xl px-4 py-3 text-left text-sm cursor-pointer ${
-                    active === item.id ? "bg-surface-2 text-text" : "text-text-soft"
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`relative rounded-full px-3.5 py-1.5 text-sm transition-colors cursor-pointer ${
+                  active === item.id ? "text-text" : "text-text-soft hover:text-text"
+                }`}
+                aria-current={active === item.id ? "true" : undefined}
+              >
+                {active === item.id && (
+                  <motion.span
+                    layoutId="nav-active-pill"
+                    className="absolute inset-0 rounded-full bg-surface-2 border border-border"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
+                <span className="relative">{item.label}</span>
+              </button>
+            ))}
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
