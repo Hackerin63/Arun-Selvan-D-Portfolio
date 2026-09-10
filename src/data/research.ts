@@ -27,7 +27,7 @@ export const research: ResearchEntry[] = [
     abstract:
       "A deep learning approach to monitoring the health of coconut leaves, aimed at early identification of disease and stress indicators from image data and provide proper treatment recommendations along with the severity assessment and Grad-CAM with multilingual support.",
     methodology: "Convolutional neural networks for image classification, trained on leaf imagery.",
-    status: "ICRET - 2026 Conference Paper (Accepted and Presented) ",
+    status: "ICRET - 2026 Conference Paper (Accepted for Publication) ",
   },
   {
     id: "Coconut-Mite-Disease-Detection-Research-2",
@@ -45,7 +45,7 @@ export const research: ResearchEntry[] = [
     abstract:
       "Developed a TT-GNN-based healthcare monitoring system that analyzes multi-sensor physiological data for early cardiovascular and cerebrovascular risk detection.",
     methodology: "Temporal Transformer–Graph Neural Network (TT-GNN) for multi-sensor physiological signal analysis and disease classification.",
-    status: "ICAIEMET-2026 Conference Paper (Accepted and Presented for publication) ",
+    status: "ICAIEMET-2026 Conference Paper (Accepted for publication) ",
   },
   // {
   //   id: "tt-gnn-systems",
