@@ -87,9 +87,6 @@ html {
 html.light {
   color-scheme: light;
 }
-section[id] {
-  scroll-margin-top: 6.5rem;
-}
 body {
   background-color: var(--bg);
   color: var(--text);
